@@ -60,3 +60,4 @@ Aplikasi ini difokuskan pada wilayah Indonesia.
 1. Install Miniforge: https://conda-forge.org/download/
 2. Open **Miniforge Prompt**
 3. Run:
+res
