@@ -52,29 +52,55 @@ Aplikasi ini difokuskan pada wilayah Indonesia.
 
 ## ⚙️ Installation
 
-Install dependencies using one of the following methods:
+Install the required dependencies using one of the following options:
 
+**Option 1: pip**
+
+```bash
 pip install -r requirements.txt
+```
 
+**Option 2: conda**
 
+```bash
 conda env update -n base -f environment.yml
+```
 
 ---
 
 ## ✅ Usage
-✅ Step 1 – Prepare Data
-Download GSMaP NetCDF (.nc) data from:
+
+### 1. Prepare the data
+
+Download GSMaP NetCDF (`.nc`) data from:
+
 🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
 
-✅ Step 2 – Configure Input
-config/input.txt 
+### 2. Configure the input
 
-✅ Step 3 – Run the Program
-- Option 1 (Windows)
-    run.bat
-- Option 2 (CLI)
-    python run.py --mode extract
-    Available modes:
-  - extract → Export rainfall data to CSV
-  - visualize → Generate rainfall maps
-  - all → Run both
+Edit the input configuration file:
+
+```text
+config/input.txt
+```
+
+### 3. Run the program
+
+**Option 1: Windows**
+
+```bat
+run.bat
+```
+
+**Option 2: Command Line**
+
+```bash
+python run.py --mode extract
+```
+
+Available modes:
+
+- `extract` — Export rainfall data to CSV
+- `visualize` — Generate rainfall maps
+- `all` — Run both extraction and visualization
+
