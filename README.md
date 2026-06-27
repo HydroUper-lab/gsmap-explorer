@@ -54,12 +54,12 @@ Aplikasi ini difokuskan pada wilayah Indonesia.
 
 Install dependencies using one of the following methods:
 
-
-```bash
 pip install -r requirements.txt
 
 
 conda env update -n base -f environment.yml
+
+---
 
 ## ✅ Usage
 ✅ Step 1 – Prepare Data
