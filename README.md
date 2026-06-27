@@ -54,15 +54,14 @@ Aplikasi ini difokuskan pada wilayah Indonesia.
 
 Install dependencies using one of the following methods:
 
-### ✅ Using pip
+
 ```bash
 pip install -r requirements.txt
 
-### ✅ Using conda
 
 conda env update -n base -f environment.yml
 
-## ⚙️ Usage
+## ✅ Usage
 ✅ Step 1 – Prepare Data
 Download GSMaP NetCDF (.nc) data from:
 🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
