@@ -70,11 +70,11 @@ Download GSMaP NetCDF (.nc) data from:
 config/input.txt 
 
 ✅ Step 3 – Run the Program
-🔹 Option 1 (Windows)
+- Option 1 (Windows)
     run.bat
-🔹 Option 2 (CLI)
+- Option 2 (CLI)
     python run.py --mode extract
     Available modes:
-    🔹  extract → Export rainfall data to CSV
-    🔹  visualize → Generate rainfall maps
-    🔹  all → Run both
+  - extract → Export rainfall data to CSV
+  - visualize → Generate rainfall maps
+  - all → Run both
