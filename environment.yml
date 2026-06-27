@@ -1,0 +1,27 @@
+name: base
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+
+  # core
+  - numpy
+  - pandas
+
+  # netcdf
+  - xarray
+  - netcdf4
+
+  # plotting
+  - matplotlib
+  - cartopy
+
+  # GIS
+  - geopandas
+  - shapely
+  - pyproj
+  - fiona
+
+  # optional
+  - scipy
+  - tqdm

@@ -1,33 +1,32 @@
+# 🌧️ GSMaP Explorer
 
-# GSMaP Explorer
-
-A desktop-based GSMaP rainfall analysis tool focused on Indonesia.
+A desktop-based GSMaP rainfall data processing and visualization tool focused on Indonesia.
 
 ---
 
 ## 🌍 Description
 
-GSMaP Explorer is a desktop-based tool for processing and analyzing GSMaP rainfall data in NetCDF (.nc) format.
+**GSMaP Explorer** is a desktop-based application designed to process and analyze GSMaP rainfall data in NetCDF (`.nc`) format.
 
-Users can download GSMaP rainfall datasets from the HESLab-UPER data portal:
+Users can download GSMaP datasets from the HESLab-UPER data portal:
 
-https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
+🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
 
-The tool performs local data processing on the user's computer, including rainfall visualization, spatial subsetting, and Thiessen polygon analysis.
+After downloading the data, users can process it locally on their computer. The application supports rainfall visualization, spatial subsetting, and data export to CSV.
 
-The current implementation focuses on rainfall data over Indonesia.
+The current implementation is focused on rainfall data over Indonesia.
 
 ---
 
 ## 🇮🇩 Deskripsi
 
-GSMaP Explorer adalah aplikasi berbasis desktop yang digunakan untuk pengolahan dan analisis data curah hujan GSMaP dalam format NetCDF (.nc).
+**GSMaP Explorer** adalah aplikasi berbasis desktop yang digunakan untuk pengolahan dan analisis data curah hujan GSMaP dalam format NetCDF (`.nc`).
 
 Data GSMaP dapat diunduh melalui portal data HESLab-UPER:
 
-https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
+🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
 
-Setelah diunduh, data dapat diolah secara lokal di komputer pengguna, termasuk visualisasi peta, subset wilayah, serta analisis poligon Thiessen.
+Setelah data diunduh, data dapat diolah secara lokal di komputer pengguna, termasuk visualisasi peta hujan, subset wilayah, dan ekspor data ke CSV.
 
 Aplikasi ini difokuskan pada wilayah Indonesia.
 
@@ -36,28 +35,47 @@ Aplikasi ini difokuskan pada wilayah Indonesia.
 ## ✨ Features
 
 - Processing GSMaP NetCDF rainfall data  
-- Map visualization of rainfall distribution  
-- Spatial subsetting based on selected boundaries  
-- Thiessen polygon analysis  
-- Export and download processed results  
+- Rainfall map visualization  
+- Spatial subsetting based on extent or shapefile  
+- Export rainfall data to CSV  
 
 ---
 
 ## 🧰 Fitur
 
 - Pengolahan data curah hujan GSMaP (NetCDF)  
-- Visualisasi peta curah hujan  
-- Subset wilayah berdasarkan batas tertentu  
-- Analisis poligon Thiessen  
-- Ekspor hasil pengolahan  
+- Visualisasi peta distribusi hujan  
+- Subset wilayah berdasarkan extent atau shapefile  
+- Ekspor data ke format CSV  
 
 ---
 
 ## ⚙️ Installation
 
-### Option 1 (Recommended – Miniforge)
+Install dependencies using one of the following methods:
 
-1. Install Miniforge: https://conda-forge.org/download/
-2. Open **Miniforge Prompt**
-3. Run:
-res
+### ✅ Using pip
+```bash
+pip install -r requirements.txt
+
+### ✅ Using conda
+
+conda env update -n base -f environment.yml
+
+## ⚙️ Usage
+✅ Step 1 – Prepare Data
+Download GSMaP NetCDF (.nc) data from:
+🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
+
+✅ Step 2 – Configure Input
+config/input.txt
+
+✅ Step 3 – Run the Program
+🔹 Option 1 (Windows)
+    run.bat
+🔹 Option 2 (CLI)
+    python run.py --mode extract
+    Available modes:
+    🔹  extract → Export rainfall data to CSV
+    🔹  visualize → Generate rainfall maps
+    🔹  all → Run both
