@@ -4,7 +4,19 @@ import pandas as pd
 from pathlib import Path
 
 
-def export_csv(data_subset, times, XX_subset, YY_subset, path_output):
+def export_csv(data_subset, times, XX_subset, YY_subset, path_output, config=None):
+    wilayah_waktu = config.get("wilayah_waktu")
+    if wilayah_waktu == "WIB":
+        time_offset = 7
+    elif wilayah_waktu == "WITA":
+        time_offset = 8
+    elif wilayah_waktu == "WIT":
+        time_offset = 9
+    else:
+        time_offset = 0
+
+    times = [t + pd.Timedelta(hours=time_offset) for t in times]
+
     path_output = Path(path_output) / "csv_output"
     path_output.mkdir(parents=True, exist_ok=True)
 

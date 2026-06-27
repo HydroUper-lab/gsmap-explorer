@@ -19,22 +19,16 @@ lon_dim        = lon
 # ========================
 start_date     = 2026-05-10   # tahun-bulan-tanggal
 end_date       = 2026-06-09   # tahun-bulan-tanggal
+wilayah_waktu = WIB             # WIB, WITA , WIT 
 
 # ========================
-# SPATIAL BOUNDING BOX (opsional kalau pakai shp)
+# SPATIAL BOUNDING BOX (jika tidak memiliki file shapefile bisa menggunakanan ini)
 # ========================
 min_lon = 105
 max_lon = 115
 min_lat = -10
 max_lat = -5
 
-# ========================
-# OUTPUT OPTIONS
-# ========================
-output_format  = tif        # tif / csv / nc
-spatial_clip   = true       # clip pakai shapefile
-resampling     = nearest    # nearest / bilinear
-nodata_value   = -9999
 
 # ========================
 # PROSES

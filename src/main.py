@@ -1,4 +1,3 @@
-
 import glob
 from datetime import datetime
 from pathlib import Path
@@ -8,7 +7,7 @@ from utils.config_reader import read_config
 from core.reader import read_netcdf, spatialsubset_netcdf
 
 from apps.extract_csv import export_csv
-# from apps.visualize import plot_map  # nanti
+from apps.visualize import plot_map  # nanti
 
 
 def run_pipeline(mode="extract"):
@@ -25,6 +24,8 @@ def run_pipeline(mode="extract"):
     # ========================
     list_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
     data, times = read_netcdf(list_nc_files, start_date, end_date)
+    if data is None or times is None:
+        raise ValueError("Tidak ada data yang ditemukan dalam rentang tanggal yang diberikan.")
 
     # ========================
     # menentukan extent
@@ -39,7 +40,7 @@ def run_pipeline(mode="extract"):
             gdf = gdf.to_crs(epsg=4326)
 
         minx, miny, maxx, maxy = gdf.total_bounds
-        extent = [minx, maxx, miny, maxy]
+        extent = [minx-0.1, maxx+0.15, miny-0.15, maxy+0.1]
 
     else:
         extent = [
@@ -48,6 +49,9 @@ def run_pipeline(mode="extract"):
             float(config.get("min_lat")),
             float(config.get("max_lat"))
         ]
+
+    if data is None or times is None:
+        raise ValueError("Tidak ada data yang ditemukan dalam rentang tanggal yang diberikan.")
 
     # ========================
     # subset data spasial
@@ -58,13 +62,13 @@ def run_pipeline(mode="extract"):
     # MODE CONTROL
     # ========================
     if mode == "extract":
-        export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"))
+        export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"), config)
 
     elif mode == "visualize":
-        print("Mode visualize belum dibuat")
-        # plot_map(data_subset, XX_subset, YY_subset)
+
+        plot_map(data_subset, times, XX_subset, YY_subset, config)
 
     elif mode == "all":
-        export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"))
-        print("Mode visualize belum dibuat")
-        # plot_map(data_subset, XX_subset, YY_subset)
+        export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"), config)
+  
+        plot_map(data_subset, times, XX_subset, YY_subset, config)
