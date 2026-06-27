@@ -67,7 +67,7 @@ Download GSMaP NetCDF (.nc) data from:
 🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
 
 ✅ Step 2 – Configure Input
-config/input.txt
+config/input.txt 
 
 ✅ Step 3 – Run the Program
 🔹 Option 1 (Windows)
