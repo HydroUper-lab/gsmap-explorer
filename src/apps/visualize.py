@@ -32,11 +32,11 @@ def plot_map(data, times, XX, YY, config=None, extent=None):
     # ========================
     wilayah_waktu = config.get("wilayah_waktu")
     if wilayah_waktu == "WIB":
-        time_offset = 7
-    elif wilayah_waktu == "WITA":
         time_offset = 8
-    elif wilayah_waktu == "WIT":
+    elif wilayah_waktu == "WITA":
         time_offset = 9
+    elif wilayah_waktu == "WIT":
+        time_offset = 10
     else:
         time_offset = 0
 

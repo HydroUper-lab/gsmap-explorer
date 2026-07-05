@@ -7,11 +7,11 @@ from pathlib import Path
 def export_csv(data_subset, times, XX_subset, YY_subset, path_output, config=None):
     wilayah_waktu = config.get("wilayah_waktu")
     if wilayah_waktu == "WIB":
-        time_offset = 7
-    elif wilayah_waktu == "WITA":
         time_offset = 8
-    elif wilayah_waktu == "WIT":
+    elif wilayah_waktu == "WITA":
         time_offset = 9
+    elif wilayah_waktu == "WIT":
+        time_offset = 10
     else:
         time_offset = 0
 
