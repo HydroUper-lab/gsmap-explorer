@@ -4,7 +4,7 @@ import cartopy.feature as cfeature
 from pathlib import Path
 import numpy as np
 from datetime import timedelta
-
+from matplotlib.colors import BoundaryNorm
 
 def plot_map(data, times, XX, YY, config=None, extent=None):
 
@@ -57,17 +57,12 @@ def plot_map(data, times, XX, YY, config=None, extent=None):
     # ========================
     # COLOR SCALE GLOBAL
     # ========================
-    if np.all(np.isnan(data)):
-        vmin, vmax = 0, 1
-    else:
-        vmin = np.nanmin(data)
-        vmax = np.nanmax(data)
 
-    # ========================
-    # COLORMAP (dengan NaN)
-    # ========================
-    cmap = plt.get_cmap("Blues").copy()
-    cmap.set_bad(color="lightgray")  # warna untuk area tanpa data
+    levels = [0.1, 1, 2, 5, 10, 20, 50, 100]
+
+    cmap = plt.get_cmap("Blues", len(levels)-1)
+    norm = BoundaryNorm(levels, cmap.N)
+
 
     # ========================
     # LOOP PLOTTING
@@ -77,21 +72,38 @@ def plot_map(data, times, XX, YY, config=None, extent=None):
         fig = plt.figure(figsize=(12, 7))
         ax = plt.axes(projection=projection)
 
-        ax.set_extent([XX.min(), XX.max(), YY.min(), YY.max()])
+        
+
+        dx = np.mean(np.diff(XX))
+        dy = np.mean(np.diff(YY))
+
+        ax.set_extent(
+            [
+                XX.min() - dx/2,
+                XX.max() + dx/2,
+                YY.min() - dy/2,
+                YY.max() + dy/2,
+            ],
+            crs=projection)
+
+
+
+
 
         # ========================
         # PLOT DATA
         # ========================
+
         im = ax.pcolormesh(
             XX_mesh,
             YY_mesh,
-            data[i, :, :],
-            transform=projection,
+            data[i],
             cmap=cmap,
-            shading='auto',
-            vmin=vmin,
-            vmax=vmax
+            norm=norm,
+            transform=projection,
+            shading="auto",
         )
+
 
         # ========================
         # COLORBAR
@@ -104,8 +116,8 @@ def plot_map(data, times, XX, YY, config=None, extent=None):
         # ========================
         ax.add_feature(cfeature.COASTLINE, linewidth=0.8)
         ax.add_feature(cfeature.BORDERS, linestyle=":")
-        ax.add_feature(cfeature.LAND, facecolor="lightyellow", alpha=0.5)
-        ax.add_feature(cfeature.OCEAN, facecolor="lightblue", alpha=0.3)
+        # ax.add_feature(cfeature.LAND, facecolor="lightyellow", alpha=0.5)
+        # ax.add_feature(cfeature.OCEAN, facecolor="lightblue", alpha=0.3)
 
         # ========================
         # GRIDLINES
@@ -139,20 +151,28 @@ def plot_map(data, times, XX, YY, config=None, extent=None):
         # ========================
         # TITLE (HARUS DI LUAR IF)
         # ========================
+
         fig.suptitle(
-            f"Intensitas Hujan (mm/jam)\n{strftime_time} ({wilayah_waktu})",
+            f"Intensitas Hujan\n{strftime_time} ({wilayah_waktu})",
             fontsize=12,
-            weight="bold"
+            fontweight="bold",
+            y=0.98
         )
+
+        fig.subplots_adjust(top=0.85)
+
+
 
 
         # ========================
         # SAVE
         # ========================
+
         plt.savefig(
             output_dir / f"precip_{i:03d}.png",
-            dpi=150,
+            dpi=150
         )
+
 
         plt.close()
 
