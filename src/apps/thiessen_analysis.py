@@ -29,7 +29,7 @@ def polygon_thiesen (config):
     df_koordinat = pd.read_csv(path_koordinat)
     points_name = df_koordinat['name'].values
     points = df_koordinat[['lon', 'lat']].values
-    path_hujan = Path(config.get("path_out")) / "csv_output" / "hujan.csv"
+    path_hujan = Path(config.get("path_out")) / "csv_output" / "hujan_grid.csv"
 
     df_hujan = pd.read_csv(path_hujan, index_col=0, parse_dates=True)
     path_shp = Path(config.get("path_shp"))
@@ -110,8 +110,8 @@ def polygon_thiesen (config):
     )
 
     df_areal_daily = df_areal.resample("D").sum()
-    df_areal_monthly = df_areal.resample("M").sum()
-    df_max_daily_yearly = df_areal_daily.resample("Y").max()
+    df_areal_monthly = df_areal.resample("ME").sum()
+    df_max_daily_yearly = df_areal_daily.resample("YE").max()
 
 
     df_areal.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_area_hourly.csv")

@@ -38,6 +38,6 @@ def export_csv(data_subset, times, XX_subset, YY_subset, path_output, config=Non
     )
 
     df_hujan.insert(0, 'time', [t.strftime("%Y-%m-%d %H:00:00") for t in times])
-    df_hujan.to_csv(path_output / "hujan.csv", index=False)
+    df_hujan.to_csv(path_output / "hujan_grid.csv", index=False)
 
     print("✅ CSV berhasil dibuat:", path_output)
