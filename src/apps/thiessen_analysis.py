@@ -109,8 +109,16 @@ def polygon_thiesen (config):
         index=df_hujan.index
     )
 
+    df_areal_daily = df_areal.resample("D").sum()
+    df_areal_monthly = df_areal.resample("M").sum()
+    df_max_daily_yearly = df_areal_daily.resample("Y").max()
 
-    df_areal.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_area_thiessen.csv")
+
+    df_areal.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_area_hourly.csv")
+    df_areal_daily.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_area_daily.csv")
+    df_areal_monthly.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_area_monthly.csv")
+    df_max_daily_yearly.to_csv(Path(config.get("path_out")) / "csv_output" / "hujan_max_daily_yearly.csv")
+
 
 
 
