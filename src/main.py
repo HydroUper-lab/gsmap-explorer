@@ -8,6 +8,7 @@ from core.reader import read_netcdf, spatialsubset_netcdf
 
 from apps.extract_csv import export_csv
 from apps.visualize import plot_map  # nanti
+from apps.thiessen_analysis import polygon_thiesen
 
 
 def run_pipeline(mode="extract"):
@@ -68,7 +69,12 @@ def run_pipeline(mode="extract"):
 
         plot_map(data_subset, times, XX_subset, YY_subset, config)
 
+    elif mode == 'thiessen':
+        export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"), config)
+        polygon_thiesen(config)
+
     elif mode == "all":
         export_csv(data_subset, times, XX_subset, YY_subset, config.get("path_out"), config)
   
         plot_map(data_subset, times, XX_subset, YY_subset, config)
+        polygon_thiesen(config)

@@ -13,9 +13,9 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--mode",
-        choices=["extract", "visualize", "all"],
+        choices=["extract", "visualize", "thiessen", "all"],
         default="extract",
-        help="Pilih mode: extract | visualize | all"
+        help="Pilih mode: extract | visualize | thiessen | all"
     )
 
     args = parser.parse_args()

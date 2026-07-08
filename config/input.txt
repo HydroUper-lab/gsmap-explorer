@@ -14,6 +14,11 @@ time_dim       = time
 lat_dim        = lat
 lon_dim        = lon
 
+#==========================
+# shapefile information
+#=========================
+das_field = HydroID  # tentukan nama field yang mewakili das_jawa
+
 # ========================
 # WAKTU / SUBSET
 # ========================
