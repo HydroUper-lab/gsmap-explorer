@@ -4,7 +4,7 @@ from pathlib import Path
 import geopandas as gpd
 
 from utils.config_reader import read_config
-from core.reader import read_netcdf, spatialsubset_netcdf
+from core.reader import read_netcdf
 
 from apps.extract_csv import export_csv
 from apps.visualize import plot_map  # nanti
@@ -19,14 +19,8 @@ def run_pipeline(mode="extract"):
 
     start_date = datetime.strptime(config.get("start_date"), "%Y-%m-%d")
     end_date = datetime.strptime(config.get("end_date"), "%Y-%m-%d")
+    print (f"Rentang tanggal: {start_date} hingga {end_date}")
 
-    # ========================
-    # Baca file NetCDF
-    # ========================
-    list_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
-    data, times = read_netcdf(list_nc_files, start_date, end_date)
-    if data is None or times is None:
-        raise ValueError("Tidak ada data yang ditemukan dalam rentang tanggal yang diberikan.")
 
     # ========================
     # menentukan extent
@@ -51,13 +45,16 @@ def run_pipeline(mode="extract"):
             float(config.get("max_lat"))
         ]
 
-    if data is None or times is None:
+    # ========================
+    # Baca file NetCDF
+    # ========================
+    list_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
+    print (list_nc_files)
+    data_subset, times, XX_subset, YY_subset = read_netcdf(list_nc_files, start_date, end_date, extent=extent)
+    if data_subset is None or times is None:
         raise ValueError("Tidak ada data yang ditemukan dalam rentang tanggal yang diberikan.")
 
-    # ========================
-    # subset data spasial
-    # ========================
-    data_subset, XX_subset, YY_subset = spatialsubset_netcdf(data, extent)
+
 
     # ========================
     # MODE CONTROL

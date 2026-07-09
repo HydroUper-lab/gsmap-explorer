@@ -1,7 +1,7 @@
 # ========================
 # PATH DATA
 # ========================
-path_nc   = data/raw
+path_nc   = D:/Google/My Drive/1_Master_Dataset/3_GSMaP_ver2/std_gauged_ver8/nc_hourly
 path_out  = data/output
 path_shp  = D:/OneDrive/6_Analysis_GIS/00_DATA_SHP/01_DAS/das_jawa-i/das_jawa-i.shp
 path_temp = 'data/temp'

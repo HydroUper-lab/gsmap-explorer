@@ -4,9 +4,19 @@ from netCDF4 import Dataset, num2date
 import numpy as np
 
 
-def read_netcdf(file_path_list, start_date=None, end_date=None):
+def read_netcdf(file_path_list, start_date=None, end_date=None, extent=None):
     times_all = []
     data_all = []
+    XX = np.arange(90.05, 150.06, 0.1) 
+    YY = np.arange(15.05, -15.06, -0.1) 
+
+    min_lon, max_lon, min_lat, max_lat = extent
+    lon_mask = (XX >= min_lon) & (XX <= max_lon)
+    lat_mask = (YY >= min_lat) & (YY <= max_lat)
+
+    
+
+
     for file_path in file_path_list:
         with Dataset(file_path, 'r') as nc:
             time_var = nc.variables['time']
@@ -25,6 +35,7 @@ def read_netcdf(file_path_list, start_date=None, end_date=None):
 
             data = nc.variables['precipitation'][:,:,:]
             mask = np.ones(data.shape[0], dtype=bool)
+            data = data[:, lat_mask, :][:, :, lon_mask]
 
             if start_date is not None:
                 mask &= (times >= start_date)
@@ -35,6 +46,8 @@ def read_netcdf(file_path_list, start_date=None, end_date=None):
                 continue  
             times_all.append(times[mask])
             data_all.append(data[mask, :, :])
+        
+            # nc.close()
 
     if len (times_all) == 0:
         return np.array([]), np.array([])
@@ -49,20 +62,6 @@ def read_netcdf(file_path_list, start_date=None, end_date=None):
     unique_times, unique_idx = np.unique(times_all, return_index=True)
     unique_data = data_all[unique_idx, :, :]
     
-    return unique_data, unique_times
+    return unique_data, unique_times, XX[lon_mask], YY[lat_mask]
 
 
-def spatialsubset_netcdf(data,extent):
-    """
-    extent: [min_lon, max_lon, min_lat, max_lat]
-    """
-    XX = np.arange(90.05, 150.06, 0.1) 
-    YY = np.arange(15.05, -15.06, -0.1) 
-
-    min_lon, max_lon, min_lat, max_lat = extent
-    lon_mask = (XX >= min_lon) & (XX <= max_lon)
-    lat_mask = (YY >= min_lat) & (YY <= max_lat)
-
-    data = data[:, lat_mask, :][:, :, lon_mask]
-
-    return data, XX[lon_mask], YY[lat_mask]
