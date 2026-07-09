@@ -1,7 +1,7 @@
 # ========================
 # PATH DATA
 # ========================
-path_nc   = D:/Google/My Drive/1_Master_Dataset/3_GSMaP_ver2/std_gauged_ver8/nc_hourly
+path_nc   = D:/Google/My Drive/1_Master_Dataset/3_GSMaP_ver2/std_ungauged_ver8/nc_hourly
 path_out  = data/output
 path_shp  = D:/OneDrive/6_Analysis_GIS/00_DATA_SHP/01_DAS/das_jawa-i/das_jawa-i.shp
 path_temp = 'data/temp'
@@ -22,8 +22,8 @@ das_field = HydroID  # tentukan nama field yang mewakili das_jawa
 # ========================
 # WAKTU / SUBSET
 # ========================
-start_date     = 2026-05-10   # tahun-bulan-tanggal
-end_date       = 2026-06-09   # tahun-bulan-tanggal
+start_date     = 1998-01-01   # tahun-bulan-tanggal
+end_date       = 2026-06-30   # tahun-bulan-tanggal
 wilayah_waktu = WIB             # WIB, WITA , WIT 
 
 # ========================
