@@ -19,7 +19,7 @@ def run_pipeline(mode="extract"):
 
     start_date = datetime.strptime(config.get("start_date"), "%Y-%m-%d")
     end_date = datetime.strptime(config.get("end_date"), "%Y-%m-%d")
-    print (f"Rentang tanggal: {start_date} hingga {end_date}")
+
 
 
     # ========================
@@ -49,7 +49,7 @@ def run_pipeline(mode="extract"):
     # Baca file NetCDF
     # ========================
     list_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
-    print (list_nc_files)
+
     data_subset, times, XX_subset, YY_subset = read_netcdf(list_nc_files, start_date, end_date, extent=extent)
     if data_subset is None or times is None:
         raise ValueError("Tidak ada data yang ditemukan dalam rentang tanggal yang diberikan.")
