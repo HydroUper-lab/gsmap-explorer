@@ -2,20 +2,33 @@ cff-version: 1.2.0
 title: "GSMaP Explorer"
 message: "If you use this software, please cite it as follows:"
 type: software
+
 authors:
   - family-names: "Januriyadi"
     given-names: "Nurul Fajar"
     affiliation: "Program Studi Teknik Sipil, Universitas Pertamina, Indonesia"
-date-released: 2026-06-27
+
 version: "1.0.0"
-doi: ""
+date-released: 2026-06-27
+
+doi: 10.5281/zenodo.21310278
 url: "https://github.com/HydroUper-lab/gsmap-explorer"
-abstract: ""
+
+abstract: >
+  GSMaP Explorer is a Python-based software developed for processing,
+  visualization, and hydrological analysis of GSMaP NetCDF rainfall data
+  over Indonesia. The software supports rainfall extraction, watershed
+  and sub-watershed analysis, Thiessen polygon generation, areal rainfall
+  computation, and export of processed results for further hydrological
+  applications.
 
 keywords:
-  - rainfall
   - GSMaP
+  - rainfall
   - hydrology
-  - Indonesia
+  - watershed
+  - sub-watershed
   - NetCDF
-license: "MIT"
+  - Indonesia
+
+license: MIT
