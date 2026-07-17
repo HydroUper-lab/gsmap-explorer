@@ -22,7 +22,7 @@ das_field = HydroID  # tentukan nama field yang mewakili das_jawa
 # ========================
 # WAKTU / SUBSET
 # ========================
-start_date     = 1998-01-01   # tahun-bulan-tanggal
+start_date     = 2026-01-01   # tahun-bulan-tanggal
 end_date       = 2026-06-30   # tahun-bulan-tanggal
 wilayah_waktu = WIB             # WIB, WITA , WIT 
 
