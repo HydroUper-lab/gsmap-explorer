@@ -2,6 +2,7 @@ import glob
 from datetime import datetime
 from pathlib import Path
 import geopandas as gpd
+from dateutil.relativedelta import relativedelta
 
 from utils.config_reader import read_config
 from core.reader import read_netcdf
@@ -48,7 +49,28 @@ def run_pipeline(mode="extract"):
     # ========================
     # Baca file NetCDF
     # ========================
-    list_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
+    all_nc_files = glob.glob(str(Path(config.get("path_nc")) / "*.nc"))
+    current = start_date.replace(day=1)
+    required_months = []
+
+    while current <= end_date:
+        required_months.append(current.strftime("%Y_%m"))
+        current += relativedelta(months=1)
+    
+    list_nc_files = []
+
+    for ym in required_months:
+        matched_file = next(
+            (f for f in all_nc_files if f"{ym}.nc" in Path(f).name),
+            None
+        )
+        if matched_file is None:
+            continue  # Skip if the file for the month is not found
+        list_nc_files.append(matched_file)
+
+    if not list_nc_files:
+        raise FileNotFoundError("Tidak ada file NetCDF yang ditemukan untuk rentang tanggal yang diberikan.")
+
 
     data_subset, times, XX_subset, YY_subset = read_netcdf(list_nc_files, start_date, end_date, extent=extent)
     if data_subset is None or times is None:
