@@ -10,7 +10,7 @@ A desktop-based GSMaP rainfall data processing and visualization tool focused on
 
 Users can download GSMaP datasets from the HESLab-UPER data portal:
 
-🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
+🔗 https://heslab-uper.com/data/hujan-satelit
 
 After downloading the data, users can process it locally on their computer. The application supports rainfall visualization, spatial subsetting, and data export to CSV.
 
@@ -24,7 +24,7 @@ The current implementation is focused on rainfall data over Indonesia.
 
 Data GSMaP dapat diunduh melalui portal data HESLab-UPER:
 
-🔗 https://www.heslab-uper.com/riset-data/data/data-hujan-iklim/data-hujan-satelit-indonesia
+🔗 https://heslab-uper.com/data/hujan-satelit
 
 Setelah data diunduh, data dapat diolah secara lokal di komputer pengguna, termasuk visualisasi peta hujan, subset wilayah, dan ekspor data ke CSV.
 
